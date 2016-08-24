@@ -15,5 +15,12 @@ class UsersTableSeeder extends Seeder
             'permissions' => 0,
 	        'password' => 'password',
 	    ]);
+
+        \App\Models\User::create([
+	        'name' => 'Tester',
+	        'email' => 'b@b.b',
+            'permissions' => 1,
+	        'password' => 'password',
+	    ]);
     }
 }
