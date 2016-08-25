@@ -1,5 +1,4 @@
 var elixir = require('laravel-elixir');
-require('laravel-elixir-vue');
 
 /*
  |--------------------------------------------------------------------------
@@ -14,6 +13,5 @@ require('laravel-elixir-vue');
 
 elixir(function(mix) {
     mix.sass('app.scss')
-       .copy('node_modules/bootstrap-sass/assets/fonts', 'public/fonts')
-       .webpack("app.js");
+       .copy('node_modules/bootstrap-sass/assets/fonts', 'public/fonts');
 });

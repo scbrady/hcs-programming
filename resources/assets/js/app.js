@@ -6,4 +6,3 @@
  */
 
 require('./bootstrap');
-require('./dropzone');

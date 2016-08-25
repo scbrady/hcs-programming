@@ -84,18 +84,11 @@ class AssignmentController extends Controller
      */
     public function upload(Request $request, $id)
     {
-        $input = $request->all();
         $user = Auth::user();
 
-        $validator = Validator::make($input, [
+        $this->validate($request, [
             'file' => 'required|file',//|mimes:java',
         ]);
- 
-        if ($validator->fails()) {
-            $this->throwValidationException(
-                $request, $validator
-            );
-        }
         
         $file = $request->file('file');
         $path = $file->storeAs('assignments', $id.'_'.$user->id.'.'.$file->getClientOriginalExtension());
@@ -115,11 +108,9 @@ class AssignmentController extends Controller
                 ]);
             }
 
-            $request->session()->flash('alert-success', 'Successfully uploaded your assignment');
+            return response()->json(null, 201);
         } else {
-            $request->session()->flash('alert-error', 'Could not upload your assignment at this time');
+            return $response()->json(['file' => ['Could not upload assignment']], 404);
         }
-
-        return Redirect::to('programs/'.$id);
     }
 }
