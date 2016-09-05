@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
 
         \App\Models\User::create([
 	        'name' => 'Dan Khilkovets',
-	        'email' => 'khilkovetsnaa@gmail.com',
+	        'email' => 'khilkovetsna@gmail.com',
             'permissions' => 1,
 	        'password' => 'password',
 	    ]);

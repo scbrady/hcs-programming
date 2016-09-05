@@ -27,3 +27,9 @@ Route::get('programs/{id}', 'AssignmentController@show');
 Route::post('programs/{id}/upload', 'AssignmentController@upload');
 
 Route::get('reading', 'ReadingController@index');
+Route::get('reading/show/{slug}', 'ReadingController@show');
+Route::get('reading/new','ReadingController@create');
+Route::post('reading/new','ReadingController@store');
+Route::get('reading/edit/{slug}','ReadingController@edit');
+Route::post('reading/update','ReadingController@update');
+Route::get('reading/delete/{id}','ReadingController@destroy');

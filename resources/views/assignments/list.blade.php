@@ -25,6 +25,10 @@
                 @endforeach
                 </tbody>
             </table>
+
+            @if(Auth::user()->permissions == 0)
+                <button class="btn btn-primary" style="margin-top:15px;"><a href="{{ url('/programs/create') }}" style="color: #fff;">New Assignment</a></button>
+            @endif
         </div>
     </div>
 </div>
