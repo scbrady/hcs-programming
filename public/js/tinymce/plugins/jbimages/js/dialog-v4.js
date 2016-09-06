@@ -61,7 +61,7 @@ var jbImagesDialog = {
 			var w = this.getWin();
 			tinymce = w.tinymce;
 		
-			tinymce.EditorManager.activeEditor.insertContent('<img src="' + result.filename +'">');
+			tinymce.EditorManager.activeEditor.insertContent('<img src="' + result.filename +'" data-mce-src="' + result.filename + '">');
 			
 			this.close();
 		}
