@@ -25,6 +25,7 @@ Route::get('programs/create', 'AssignmentController@create');
 Route::post('programs/store', 'AssignmentController@store');
 Route::get('programs/{id}', 'AssignmentController@show');
 Route::post('programs/{id}/upload', 'AssignmentController@upload');
+Route::post('programs/{id}/lockout', 'AssignmentController@lockout');
 
 Route::get('reading', 'ReadingController@index');
 Route::get('reading/show/{slug}', 'ReadingController@show');

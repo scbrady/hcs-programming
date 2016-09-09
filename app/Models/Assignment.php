@@ -13,7 +13,7 @@ class Assignment extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description', 'due'
+        'name', 'description', 'due', 'lockout'
     ];
     protected $casts = [
         'due' => 'date',

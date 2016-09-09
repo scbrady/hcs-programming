@@ -20,7 +20,7 @@
                 @foreach($assignments as $assignment)
                     <tr class='clickable-row' data-href='/programs/{{$assignment->id}}'>
                         <td>{{$assignment->name}}</td>
-                        <td>{{$assignment->due}}</td>
+                        <td>{{$assignment->due->format('M. jS')}}</td>
                     </tr>
                 @endforeach
                 </tbody>

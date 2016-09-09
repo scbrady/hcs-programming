@@ -127,7 +127,7 @@
 
             <h1 class="page-header">{{$assignment->name}}</h1>
             <h3>{{$assignment->description}}</h3>
-            <h5>Due: {{$assignment->due}}</h5>
+            <h5>Due: {{$assignment->due->format('M. jS')}}</h5>
             
             <div class="panel panel-default">
                 <div class="panel-heading">Submit Assignment</div>
@@ -135,9 +135,9 @@
                     @if($assignment->upload)
                     <h4>Submitted File: {{$assignment->upload->name}}</h4>
                     <hr />
-                    <h2 style="text-align:center">Change File:</h2>
                     @endif
 
+                    @if(!$assignment->upload || !$assignment->lockout)
                     <form method="post" action="/programs/{{$assignment->id}}/upload" enctype="multipart/form-data" novalidate class="box">
                         {{ csrf_field() }}
                         <div class="box__input">
@@ -151,7 +151,7 @@
                         <div class="box__uploading">Uploading&hellip;</div>
                         <div class="box__error">Error!</div>
                     </form>
-
+                    @endif
                 </div>
             </div>
         </div>

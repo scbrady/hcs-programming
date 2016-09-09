@@ -72,7 +72,7 @@ class AssignmentController extends Controller
             $assignment->load('upload');
             return view('assignments.show')->with('assignment', $assignment);
         } else {
-            $assignment->load('uploads');
+            $assignment->load('uploads.user');
             return view('assignments.admin-show')->with('assignment', $assignment);
         }
     }
@@ -91,7 +91,7 @@ class AssignmentController extends Controller
         ]);
         
         $file = $request->file('file');
-        $path = $file->storeAs('assignments', $id.'_'.$user->id.'.'.$file->getClientOriginalExtension());
+        $path = $file->storeAs('public/assignments', $id.'_'.$user->id.'.'.$file->getClientOriginalExtension());
         
         if ($path) {
             $upload = Upload::where('assignment_id', '=', $id)->where('user_id', '=', $user->id)->first();
@@ -110,7 +110,19 @@ class AssignmentController extends Controller
 
             return response()->json(null, 201);
         } else {
-            return $response()->json(['file' => ['Could not upload assignment']], 404);
+            return response()->json(['file' => ['Could not upload assignment']], 404);
+        }
+    }
+
+    public function lockout(Request $request, $id)
+    {
+        if(Auth::user()->permissions == 0) {
+            $assignment = Assignment::find($id);
+            $assignment->lockout = 1;
+            $assignment->save();
+            return response()->json(null, 201);
+        } else {
+            return response()->json(['error' => ['Unauthenticated']], 404);
         }
     }
 }
