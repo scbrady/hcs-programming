@@ -25,13 +25,19 @@ class AssignmentController extends Controller
     /**
      * Show all the assignments.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        $assignments = Assignment::all();
+        if(Auth::user()->permissions != 0) {
+            $assignments = Assignment::where('lockout', '=', 0)->get();
 
-        return view('assignments.list')->with('assignments', $assignments);
+            return view('assignments.list')->with('assignments', $assignments);
+        } else {
+            $assignments = Assignment::all();
+
+            return view('assignments.list')->with('assignments', $assignments);
+        }
     }
 
     public function create()
