@@ -34,7 +34,7 @@ class AssignmentController extends Controller
 
             return view('assignments.list')->with('assignments', $assignments);
         } else {
-            $assignments = Assignment::all();
+            $assignments = Assignment::where('lockout', '=', 0)->get();
 
             return view('assignments.list')->with('assignments', $assignments);
         }
